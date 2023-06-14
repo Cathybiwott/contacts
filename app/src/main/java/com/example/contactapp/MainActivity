@@ -1,0 +1,36 @@
+package com.example.ContactApp
+
+import android.graphics.drawable.Drawable
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.ContactApp.databinding.ActivityNewContactBinding
+class NewContactActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityNewContactBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityNewContactBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.btnSave.setOnClickListener {
+            val name = binding.tvNewName.text.toString()
+            val phone = binding.tvPhoneNumber.text.toString()
+            val email = binding.tvEmail.text.toString()
+            val image = binding.ivAvatar.drawable
+            // Save the new contact to the contact list
+            val newContact = Contact(name, phone, email, image)
+            ContactList.addContact(newContact)
+            // Return to the main activity
+            finish()
+        }
+    }
+}
+class Contact(val name: String, val phone: String, val email: String, val image: Drawable)
+object ContactList {
+    private val contacts = mutableListOf<Contact>()
+    fun addContact(contact: Contact) {
+        contacts.add(contact)
+    }
+}binding.btnAdd.setOnClickListener {
+     val intent = Intent(this,MainActivity2::class.java)
+     startActivity(intent)
+ }
+
